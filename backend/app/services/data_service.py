@@ -32,6 +32,9 @@ class DataService:
     def get_schema(self):
         return self.data.dtypes.to_dict()
     
+    def get_head(self):
+        return self.data.head().to_dict()
+    
     def execute_query(self, query):
         data = self.data
         try:
@@ -44,4 +47,3 @@ class DataService:
                 "result": None,
                 "error": str(e)
             }
-    
