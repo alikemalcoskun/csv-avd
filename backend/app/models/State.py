@@ -2,6 +2,10 @@ from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field
 
 class State(BaseModel):
+    # Input states
+    user_question: str = Field(default="")
+    data: str = Field(default="")
+
     # Generation states
     query_generate_result: Dict[str, Any] = Field(default_factory=dict)
     query_execute_result: Dict[str, Any] = Field(default_factory=dict)

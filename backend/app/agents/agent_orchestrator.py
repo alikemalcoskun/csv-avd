@@ -11,7 +11,7 @@ from IPython.display import Image
 
 
 class AgentOrchestrator:
-    def __init__(self):
+    def __init__(self, data_path: str, user_question: str):
         self.router_builder = StateGraph(State)
         self.workflow = None
 
@@ -20,7 +20,6 @@ class AgentOrchestrator:
         self.data_agent = DataAgent()
         self.data_router = DataRouter()
         self.query_evaluator = QueryEvaluator()
-
 
     def generate_workflow(self) -> StateGraph:
         # Add nodes
@@ -54,16 +53,13 @@ class AgentOrchestrator:
         self.router_builder.add_edge("data_visualize", END)
         self.router_builder.add_edge("data_tabulate", END)
 
-
     def compile_workflow(self):
         # Compile workflow
         self.workflow = self.router_builder.compile()
-    
 
     def invoke(self, state):
         # Invoke workflow
         return self.workflow.invoke(state)
-
 
     def draw_workflow(self):
         # Show the workflow
