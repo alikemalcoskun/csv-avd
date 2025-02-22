@@ -12,6 +12,13 @@ class QueryEvaluator:
                 "query_eval_result": "max_retries_exceeded",
             }
         
+        query_result = state.query_execute_result
+        if query_result.get("error"):
+            return {
+                "query_eval_result": "fail",
+                "query_eval_retries": state.query_eval_retries + 1,
+                }
+        
         return {
             "query_eval_result": "pass",
             "query_eval_retries": state.query_eval_retries + 1,
