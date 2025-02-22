@@ -31,9 +31,15 @@ class LLMService:
             api_key=OPENAI_API_KEY,
         )
 
-    def invoke(self, prompt: ChatPromptTemplate, is_response_json=False, **kwargs):
+    def invoke(self, prompt: ChatPromptTemplate, is_response_json=False, structured_output=None, **kwargs):
         messages = prompt.invoke(**kwargs)
-        response = self.model.invoke(messages)
+        if structured_output is None:
+            response = self.model.invoke(messages)
+        else:
+            model_structured_output = self.model.with_structured_output(structured_output)
+            response = model_structured_output.invoke(messages)
+            return response
+        
         response_content = response.content
 
         if is_response_json:
