@@ -18,7 +18,7 @@ class State(BaseModel):
 
     # Routing states
     # https://langchain-ai.github.io/langgraph/tutorials/workflows/#routing
-    data_agent_type_result: str = Field(default="data_analyze")
+    data_agent_type_result: str = Field(default="none")
     
     # Evaluator states
     # https://langchain-ai.github.io/langgraph/tutorials/workflows/#evaluator-optimizer

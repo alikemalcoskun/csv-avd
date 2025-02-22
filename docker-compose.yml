@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: 
+      context: ./backend
+    container_name: csv-backend
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports: 
+      - "5172:5172"
+    command: sh -c "uvicorn app.main:app --host 0.0.0.0 --port 5172  --reload"
+    networks: 
+      - app-network
+  
+networks:
+  app-network:
+    driver: bridge

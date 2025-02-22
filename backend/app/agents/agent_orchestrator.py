@@ -11,7 +11,7 @@ from IPython.display import Image
 
 
 class AgentOrchestrator:
-    def __init__(self, data_path: str, user_question: str):
+    def __init__(self):
         self.router_builder = StateGraph(State)
         self.workflow = None
 
