@@ -1,10 +1,12 @@
-import { Space, Typography } from 'antd';
+import { Space, Typography, Divider } from 'antd';
 import { ResultMain } from './ResultMain';
 
 export const Result = ({ result }) => {
     return (
         <Space direction="vertical">
-            <Typography.Title level={4}>Result</Typography.Title>
+            <Divider orientation="left"
+                style={{ borderColor: 'black', borderWidth: 2 }}
+            >Result</Divider>
             <Typography.Text>{result.introduction}</Typography.Text>
             <ResultMain result={result} />
             <Typography.Text>{result.conclusion}</Typography.Text>
