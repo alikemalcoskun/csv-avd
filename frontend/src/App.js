@@ -55,7 +55,11 @@ function App() {
         messageApi.success('Request completed successfully');
       })
       .catch((error) => {
-        messageApi.error(error.response.data.detail);
+        if (error?.response?.data?.detail && typeof error.response.data.detail === 'string') {
+          messageApi.error(error.response.data.detail);
+        } else {
+          messageApi.error('An error occurred while sending the request');
+        }
         console.error(error);
       })
       .finally(() => {
