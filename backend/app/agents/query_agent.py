@@ -14,8 +14,9 @@ class QueryAgent:
                 You are given the the user question and the DataFrame schema.
                 
                 It is important to consider the following:
-                - The user question might be about reports, charts, or any other data analysis of a subset of the data. I will consider any type of analysis later.
-                You are responsible for generating the SQL query to get the subset of the data only.
+                - The user question might be about reports, charts any other data analysis of a subset of the data. I will consider any type of analysis later.
+                - The user question might be about running a machine learning model on the data. You are responsible to filter necessary data for the model. I will consider the machine learning part later. Do not worry about the model training.
+                - You are responsible for generating the SQL query to get the subset of the data only.
 
                 If the question is not clear, relative to the data, or any other issue, fill the "error" field with the issue message, else fill with null.
 

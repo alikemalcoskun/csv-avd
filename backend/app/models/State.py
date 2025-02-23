@@ -15,6 +15,7 @@ class State(BaseModel):
     data_analyze_result: Dict[str, Any] = Field(default_factory=dict)
     data_visualize_result: Dict[str, Any] = Field(default_factory=dict)
     data_tabulate_result: Dict[str, Any] = Field(default_factory=dict)
+    data_machine_learning_result: Dict[str, Any] = Field(default_factory=dict)
 
     # Routing states
     # https://langchain-ai.github.io/langgraph/tutorials/workflows/#routing

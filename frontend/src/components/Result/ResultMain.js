@@ -49,9 +49,11 @@ export const ResultMain = ({ result }) => {
         return (
             <ReactECharts option={option} />
         );
+    } else if (result.type === 'data_machine_learning') {
+        return (
+            <Typography.Text>{result.main}</Typography.Text>
+        );
     } else {
         return null;
     }
-
-    return null;
 }

@@ -30,6 +30,7 @@ class AgentOrchestrator:
         self.router_builder.add_node("data_analyze", self.data_agent.analyze)
         self.router_builder.add_node("data_visualize", self.data_agent.visualize)
         self.router_builder.add_node("data_tabulate", self.data_agent.tabulate)
+        self.router_builder.add_node("data_machine_learning", self.data_agent.machine_learning)
 
         # Add edges to connect nodes
         self.router_builder.add_edge(START, "query_generate")
@@ -47,11 +48,13 @@ class AgentOrchestrator:
                 "data_analyze": "data_analyze",
                 "data_visualize": "data_visualize",
                 "data_tabulate": "data_tabulate",
+                "data_machine_learning": "data_machine_learning",
             },
         )
         self.router_builder.add_edge("data_analyze", END)
         self.router_builder.add_edge("data_visualize", END)
         self.router_builder.add_edge("data_tabulate", END)
+        self.router_builder.add_edge("data_machine_learning", END)
 
     def compile_workflow(self):
         # Compile workflow

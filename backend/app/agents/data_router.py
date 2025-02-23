@@ -9,7 +9,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from app.services.llm_service import LLMService
 
 class Route(BaseModel):
-    step: Literal["data_analyze", "data_visualize", "data_tabulate"] = Field(
+    step: Literal["data_analyze", "data_visualize", "data_tabulate", "data_machine_learning"] = Field(
         None, description="The next step of the data analysis agent"
     )
 
@@ -29,6 +29,8 @@ class DataRouter:
                     - Examples: "Plot the sales over time.", "Show me a chart of the sales by product."
                 - Tabulate: Reconstruct the data in a tabular format to show the data on a table.
                     - Examples: "Show me the data in a table.", "List the sales by product."
+                - Machine Learning: Perform machine learning on the data to predict or classify the data.
+                    - Examples: "Predict the sales for next month.", "Classify the transactions by product."
             '''),
             ("human", '''- User question: {user_question}
             ''')

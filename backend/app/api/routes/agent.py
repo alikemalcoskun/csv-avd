@@ -48,6 +48,8 @@ def run_workflow(request: AgentRequest):
         result = state.data_visualize_result
     elif data_agent_type_result == "data_tabulate":
         result = state.data_tabulate_result
+    elif data_agent_type_result == "data_machine_learning":
+        result = state.data_machine_learning_result
     else:
         raise HTTPException(status_code=500, detail="No data agent type result provided.")
     
