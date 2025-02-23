@@ -1,6 +1,7 @@
 import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import * as XLSX from 'xlsx';
+import * as Papa from 'papaparse';
 
 export const FileUploadButton = ({ onFileSelect, filename, setFilename, setFileData }) => {
     const [messageApi, contextHolder] = message.useMessage();
@@ -25,11 +26,16 @@ export const FileUploadButton = ({ onFileSelect, filename, setFilename, setFileD
                     // Direct CSV content
                     csvContent = e.target.result;
                 }
-                console.log(csvContent);
-                setFileData(csvContent);
+                // Convert CSV to JSON
+                const jsonContent = Papa.parse(csvContent, { header: true, skipEmptyLines: true }).data;
+                
+                // JSON to String
+                const jsonString = JSON.stringify(jsonContent);
+
+                setFileData(jsonString);
                 setFilename(file.name);
             } catch (error) {
-                messageApi.error('Error processing file');
+                messageApi.error('Error processing file: ' + error.message);
                 console.error(error);
             }
         };

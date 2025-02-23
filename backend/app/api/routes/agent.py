@@ -63,4 +63,4 @@ def get_data(data: dict, use_default_data: bool) -> str:
         data_path = "data/Stock_Trading_History.csv"
         data = DataService().from_csv_file(data_path)
         data = json.dumps(data.to_json())
-    return data
+    return json.dumps(data)
