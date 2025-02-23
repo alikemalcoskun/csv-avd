@@ -1,9 +1,10 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Typography, Space, Input, Button, Layout, message } from 'antd';
 import { SendOutlined, HighlightOutlined, TableOutlined, LineChartOutlined, PartitionOutlined, LoadingOutlined } from '@ant-design/icons';
 import { SuggestionCards } from './components/SuggestionCards/SuggestionCards';
 import { FileUploadButton } from './components/FileUploadButton/FileUploadButton';
+import { APIKeyModal } from './components/APIKeyModal/APIKeyModal';
 
 // Axios
 import axios from 'axios';
@@ -12,6 +13,33 @@ import { Result } from './components/Result/Result';
 
 function App() {
   const [messageApi, contextHolder] = message.useMessage();
+
+  // API Key Modal
+  const [apiKeyModalVisible, setApiKeyModalVisible] = useState(false);
+  const handleApiKeyModalOk = () => {
+    setApiKeyModalVisible(false);
+  };
+  const handleApiKeyModalCancel = () => {
+    setApiKeyModalVisible(false);
+  }
+
+  // Check if API key is set
+  const checkAPIKey = () => {
+    axios.get('http://localhost:5172/api/v1/key/check')
+      .then((response) => {
+        if (!response.data.ok) {
+          setApiKeyModalVisible(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  // Check key and load modal when page is loaded
+  useEffect(() => {
+    checkAPIKey();
+  }, []);
 
   const [inputText, setInputText] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -112,6 +140,7 @@ function App() {
 
   return (
     <>
+      <APIKeyModal visible={apiKeyModalVisible} onOk={handleApiKeyModalOk} onCancel={handleApiKeyModalCancel} />
       {contextHolder}
       <Layout style={{ 
         minHeight: '100vh', 
