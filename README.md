@@ -46,6 +46,6 @@ based on your docker configuration.
 ![Workflow](docs/workflow.png)
 
 ## Demo
-<video width="320" height="240" controls>
-  <source src="docs/demo.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/8d16c11f-58d3-4df7-91f8-19961e347a95
+
+
