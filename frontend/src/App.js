@@ -55,7 +55,7 @@ function App() {
         messageApi.success('Request completed successfully');
       })
       .catch((error) => {
-        messageApi.error('Error sending the request');
+        messageApi.error(error.response.data.detail);
         console.error(error);
       })
       .finally(() => {

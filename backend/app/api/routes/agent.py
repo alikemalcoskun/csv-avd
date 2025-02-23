@@ -33,7 +33,12 @@ def run_workflow(request: AgentRequest):
     orchestrator.compile_workflow()
 
     initial_state = State(data=data, user_question=request.user_question)
-    state_dict = orchestrator.invoke(initial_state.model_dump())
+    try:
+        state_dict = orchestrator.invoke(initial_state.model_dump())
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        error_message = "An error occurred while running the agent orchestrator: " + str(e)
+        raise HTTPException(status_code=500, detail=error_message)
     state = State(**state_dict)  # Convert dictionary back to State model
 
     data_agent_type_result = state.data_agent_type_result
