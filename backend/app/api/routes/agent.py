@@ -45,6 +45,8 @@ def run_workflow(request: AgentRequest):
         result = state.data_tabulate_result
     else:
         raise HTTPException(status_code=500, detail="No data agent type result provided.")
+    
+    result["type"] = data_agent_type_result
 
     return AgentResponse(user_question=request.user_question, result=result)
 
